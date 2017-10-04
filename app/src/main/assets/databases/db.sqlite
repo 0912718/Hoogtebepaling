@@ -1,0 +1,9 @@
+CREATE TABLE "bssid" ("bssidName" VARCHAR UNIQUE, "signal" VARCHAR, PRIMARY KEY("bssidName"));
+INSERT INTO "bssid" ( "bssidName" ) VALUES ( 'gdfsgfgfds' );
+INSERT INTO "bssid" ( "bssidName" ) VALUES ( 'gfdsgfdsg' );
+INSERT INTO "signal" ("strength") VALUES ( '5000' );
+--CREATE TABLE "bssid" ("bssidName" VARCHAR NOT NULL UNIQUE);
+--CREATE TABLE "signal" ("strength" VARCHAR);
+--INSERT INTO "bssid" ( "bssidName" ) VALUES ( 'gdfsgfgfds' );
+--INSERT INTO "bssid" ( "bssidName" ) VALUES ( 'gfdsgfdsg' );
+--INSERT INTO "signal" ("strength") VALUES ( '5000' );

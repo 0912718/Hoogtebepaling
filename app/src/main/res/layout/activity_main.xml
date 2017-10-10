@@ -25,12 +25,14 @@
             <!--android:id="@+id/listView"-->
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="wrap_content" />-->
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/beganegrond"
-            android:cropToPadding="true"
-            android:id="@+id/plattegrond"/>
+
     </LinearLayout>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/beganegrond"
+        android:cropToPadding="true"
+        android:id="@+id/plattegrond"
+        android:visibility="invisible"/>
 
 </android.support.constraint.ConstraintLayout>

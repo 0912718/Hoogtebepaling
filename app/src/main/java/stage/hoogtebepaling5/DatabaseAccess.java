@@ -4,7 +4,7 @@ package stage.hoogtebepaling5;
  * Created by Edgar on 10/2/2017.
  */
 
-
+/**Standaard database access functie*/
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -57,13 +57,11 @@ public class DatabaseAccess {
     }
 
     /**
-     * Read all data from the database.
-     *
-     * @return a List of data
+     * voert een query uit en haalt vervolgens de gegevens op en slaat die in een lijst
      */
     public List<String> getData() {
         List<String> list = new ArrayList<>();
-        Cursor cursor = database.rawQuery("SELECT * FROM bssid", null);
+        Cursor cursor = database.rawQuery("SELECT * from router", null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             list.add(cursor.getString(0));
@@ -76,29 +74,7 @@ public class DatabaseAccess {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//knutseltje, gewoon negeren
 
 
 

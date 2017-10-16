@@ -1,12 +1,8 @@
-//TODO --> API OP LAAG PITJE, EERST ZORGEN DAT DE REST VAN DE APP WERKT!
 package stage.hoogtebepaling5;
 
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.location.LocationManager;
-import android.media.Image;
-import android.net.Uri;
 import android.net.wifi.WifiManager;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
@@ -27,16 +23,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     public DatabaseOpenHelper mDBHelper;
-    private JSONObject jsonObject;
-
-//    private static final String ROOT_URL = "https://location-api-acceptance.safeguardapp.nl";
-//    private static final String KEY_ID = "_id";
-//    private static final String KEY_BSSID = "BSSID";
-//    private static final String KEY_SSID = "SSID";
-//    private static final String KEY_geofence = "geofence";
-//    private static final String KEY_organisation = "organisation";
-//    private static final String KEY_created_at = "created_at";
-    //private List<Data> data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,27 +32,29 @@ public class MainActivity extends AppCompatActivity {
         final LocationManager gps = (LocationManager) getApplicationContext().getSystemService(LOCATION_SERVICE);
 
         mDBHelper = new DatabaseOpenHelper(this);
-        //getAccesspoints();
 
         // checkt of wifi en GPS aanstaan
         if (wifi.isWifiEnabled() && gps.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+            //laad de plattegrond in scherm
             ImageView image = (ImageView) findViewById((R.id.plattegrond));
             image.setImageResource(R.drawable.beganegrond);
+            //image staat standaard uit om bugs te voorkomen, hieronder wordt ie visible gemaakt
             image.setVisibility(View.VISIBLE);
-
-//             ListView listview = (ListView) findViewById(R.id.listView);
-//            DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
-            //Database access!!!!!
-//            databaseAccess.open();
-//            List<String> lijst = databaseAccess.getData();
-//            databaseAccess.close();
-//            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, lijst);
-//            listview.setAdapter(adapter);
+            DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
+            //Database access openen
+            databaseAccess.open();
+            //query uit getData() wordt in een list geladen
+            List<String> lijst = databaseAccess.getData();
+            //database wordt gesloten
+            databaseAccess.close();
+            //ter controle
+            System.out.println(lijst);
         }
         else{
+            //als wifi uitstaat
             if (!wifi.isWifiEnabled()) {
 
-
+                //pop up waarin komt te staan dat wifi aanmoet
                 AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
                 dialog.setCancelable(true);
                 dialog.setTitle("The app does not work with Wi-Fi turned off");
@@ -82,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 alert.show();
             }
             else{
+                //pop up om gps aan te zetten
                 final Intent action = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                 AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
                 dialog.setCancelable(true);
@@ -99,101 +88,4 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-//    // you can make this class as another java file so it will be separated from your main activity.
-//    public class AsyncTaskParseJson extends AsyncTask<String, String, String> {
-//
-//        final String TAG = "AsyncTaskParseJson.java";
-//
-//        // set your json string url here
-//        String yourJsonStringUrl = "https://location-api-acceptance.safeguardapp.nl/api/v1/access-points/653532323033643938396666";
-//
-//        // contacts JSONArray
-//        JSONArray dataJsonArr = null;
-//
-//
-//        @Override
-//        protected void onPreExecute() {}
-//
-//        @Override
-//        protected String doInBackground(String... arg0) {
-//
-//            try {
-//
-//                // instantiate our json parser
-//                JSONParser jParser = new JSONParser();
-//                JSONObject json = jParser.makeHttpRequest("https://location-api-acceptance.safeguardapp.nl/api/v1/access-points/653532323033643938396666", "GET", null);
-//                // get json string from url
-//                //JSONObject json = jParser.makeHttpRequest(yourJsonStringUrl);
-//
-//                // get the array of users
-//                dataJsonArr = new JSONArray(json.toString());
-//
-//                // loop through all users
-//                for (int i = 0; i < dataJsonArr.length(); i++) {
-//
-//                    JSONObject c = dataJsonArr.getJSONObject(i);
-//
-//                    // Storing each json item in variable
-//                    String id = c.getString("_id");
-//                    String BSSID = c.getString("BSSID");
-//                    String SSID = c.getString("SSID");
-//                    String geofence = c.getString("geofence");
-//                    String organ = c.getString("organisation");
-//                    String created = c.getString("created_at");
-//
-//
-//                    // show the values in our logcat
-//                    Log.e(TAG, "id: " + id
-//                            + ", BSSID: " + BSSID
-//                            + ", SSID: " + SSID
-//                            + ", geofence: " + geofence
-//                            + ", organisation: " + organ
-//                            + ", created at: " + created);
-//
-//
-//                }
-//
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//            }
-//
-//            return null;
-//        }
-//
-//        @Override
-//        protected void onPostExecute(String strFromDoInBg) {}
-//    }
-//private void getAccesspoints(){
-//    //While the app fetched data we are displaying a progress dialog
-//    final ProgressDialog loading = ProgressDialog.show(this,"Fetching Data","Please wait...",false,false);
-//
-//    //Creating a rest adapter
-//    RestAdapter adapter = new RestAdapter.Builder()
-//            .setEndpoint(ROOT_URL)
-//            .build();
-//
-//    //Creating an object of our api interface
-//    IAccessPointsAPI api = adapter.create(IAccessPointsAPI.class);
-//
-//    //Defining the method
-//    api.getAccesspoints(new Callback<List<Data>>() {
-//        @Override
-//        public void success(List<Data> list, Response response) {
-//            //Dismissing the loading progressbar
-//            loading.dismiss();
-//
-//            //Storing the data in our list
-//            data = list;
-//            System.out.println(list);
-//
-//            //Calling a method to show the list
-//            //showList();
-//        }
-//
-//        @Override
-//        public void failure(RetrofitError error) {
-//            //you can handle the errors here
-//        }
-//    });
-//}
 }

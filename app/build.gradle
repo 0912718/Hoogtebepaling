@@ -34,7 +34,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.readystatesoftware.sqliteasset:sqliteassethelper:+'
-    compile 'com.google.code.gson:gson:2.8.2'
     testCompile 'junit:junit:4.12'
-    compile 'com.squareup.retrofit:retrofit:1.9.0'
+    compile 'com.yayandroid:LocationManager:2.0.4'
+    compile 'com.google.android.gms:play-services-location:+'
 }

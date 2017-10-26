@@ -1,4 +1,4 @@
-package stage.hoogtebepaling5;
+package stage.hoogtebepaling5.Database;
 
 /**
  * Created by Edgar on 10/2/2017.

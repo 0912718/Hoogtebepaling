@@ -1,36 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/locationText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textColor="@android:color/black"
-        android:textSize="15sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        tools:layout_constraintTop_creator="1"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context="stage.hoogtebepaling5.Location.LocationClass">
 
     <ImageView
-        android:layout_width="405dp"
-        android:layout_height="520dp"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
         android:src="@drawable/beganegrond"
         android:cropToPadding="true"
-        android:id="@+id/floormap"
-        android:visibility="invisible"
-        android:rotation="90"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintLeft_creator="1"
-        app:layout_constraintLeft_toLeftOf="@+id/locationText"
-        app:layout_constraintTop_toTopOf="@+id/locationText"
-        android:layout_marginLeft="-3dp"
-        android:layout_marginTop="62dp"
-        tools:layout_editor_absoluteX="11dp" />
+        android:id="@+id/mapview"
+        android:visibility="invisible"/>
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Location: Safeguard HQ"
+        android:visibility="invisible"/>
+
+
+</LinearLayout>

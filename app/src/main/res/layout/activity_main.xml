@@ -4,11 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="stage.hoogtebepaling5.MainActivity">
-        <!--<ListView-->
-        <!--android:id="@+id/listView"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content" />-->
-
-
+    tools:context="stage.hoogtebepaling5.MainActivity"
+    android:id="@+id/activity_main">
 </android.support.constraint.ConstraintLayout>

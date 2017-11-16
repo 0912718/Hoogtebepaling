@@ -32,8 +32,9 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".Location.LocationClass" />
-        <activity android:name=".Location.AlertClass" />
+        <activity android:name=".Location.LocationActivity" />
+        <!--<activity android:name=".Location.AlertClass" />-->
+        <!--<activity android:name=".Fingeren.Algorithms" />-->
     </application>
 
 </manifest>

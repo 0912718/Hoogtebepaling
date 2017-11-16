@@ -9,15 +9,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import java.util.List;
 import stage.hoogtebepaling5.Database.*;
-import stage.hoogtebepaling5.Location.LocationClass;
+import stage.hoogtebepaling5.Location.LocationActivity;
 
 public class MainActivity extends AppCompatActivity {
     public DatabaseOpenHelper mDBHelper;
+    final WifiManager wifi = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final WifiManager wifi = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+
         mDBHelper = new DatabaseOpenHelper(this);
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this); //initialize db
         databaseAccess.open(); //Database access openen
@@ -40,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void checkWifi(){
-    final WifiManager wifi = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
     AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
             dialog.setCancelable(false);
             dialog.setTitle("The app does not work without Wi-Fi");
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToLocation(){
-        startActivity(new Intent(this, LocationClass.class));
+        startActivity(new Intent(this, LocationActivity.class));
     }
 }
 

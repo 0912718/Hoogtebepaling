@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.net.wifi.WifiManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -30,7 +31,7 @@ import java.util.List;
 
 import stage.hoogtebepaling5.R;
 
-public class LocationClass extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
+public class LocationActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener{
 
@@ -44,8 +45,8 @@ public class LocationClass extends AppCompatActivity implements GoogleApiClient.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.location_display_layout);
-       // final WifiManager wifi = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+        setContentView(R.layout.location_activity);
+        final WifiManager wifi = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
         image = findViewById((R.id.mapview));
         image.setImageResource(R.drawable.beganegrond);
         text = findViewById(R.id.textView);
@@ -92,7 +93,7 @@ public class LocationClass extends AppCompatActivity implements GoogleApiClient.
     private void getMyLocation() { // retrieve location
             if (googleApiClient != null) {
                 if (googleApiClient.isConnected()) {
-                    int permissionLocation = ContextCompat.checkSelfPermission(LocationClass.this,
+                    int permissionLocation = ContextCompat.checkSelfPermission(LocationActivity.this,
                             Manifest.permission.ACCESS_FINE_LOCATION);
                     if (permissionLocation == PackageManager.PERMISSION_GRANTED) {
                         myLocation = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
@@ -120,7 +121,7 @@ public class LocationClass extends AppCompatActivity implements GoogleApiClient.
                                         // All location settings are satisfied.
                                         // initializing location requests
                                         int permissionLocation = ContextCompat
-                                                .checkSelfPermission(LocationClass.this,
+                                                .checkSelfPermission(LocationActivity.this,
                                                         Manifest.permission.ACCESS_FINE_LOCATION);
                                         if (permissionLocation == PackageManager.PERMISSION_GRANTED) {
                                             myLocation = LocationServices.FusedLocationApi
@@ -136,7 +137,7 @@ public class LocationClass extends AppCompatActivity implements GoogleApiClient.
                                             // and check the result in onActivityResult().
                                             // Ask to turn on GPS automatically with an genius dialog
                                             System.out.println("test3");
-                                            status.startResolutionForResult(LocationClass.this,
+                                            status.startResolutionForResult(LocationActivity.this,
                                                     REQUEST_CHECK_SETTINGS_GPS);
                                         } catch (IntentSender.SendIntentException e) {
                                             // Ignore the error.
@@ -151,7 +152,6 @@ public class LocationClass extends AppCompatActivity implements GoogleApiClient.
             }
 
         }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -170,7 +170,7 @@ public class LocationClass extends AppCompatActivity implements GoogleApiClient.
     }
 
     private void checkPermissions(){
-        int permissionLocation = ContextCompat.checkSelfPermission(LocationClass.this,
+        int permissionLocation = ContextCompat.checkSelfPermission(LocationActivity.this,
                 android.Manifest.permission.ACCESS_FINE_LOCATION);
         List<String> listPermissionsNeeded = new ArrayList<>();
         if (permissionLocation != PackageManager.PERMISSION_GRANTED) {
@@ -187,7 +187,7 @@ public class LocationClass extends AppCompatActivity implements GoogleApiClient.
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-        int permissionLocation = ContextCompat.checkSelfPermission(LocationClass.this,
+        int permissionLocation = ContextCompat.checkSelfPermission(LocationActivity.this,
                 Manifest.permission.ACCESS_FINE_LOCATION);
         if (permissionLocation == PackageManager.PERMISSION_GRANTED) {
             getMyLocation();

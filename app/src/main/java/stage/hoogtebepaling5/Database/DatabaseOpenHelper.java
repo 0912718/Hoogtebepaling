@@ -1,4 +1,4 @@
-package stage.hoogtebepaling5;
+package stage.hoogtebepaling5.Database;
 
 /**
  * Initialize the database, nothing special
